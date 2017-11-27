@@ -1,0 +1,77 @@
+buildscript {
+  repositories { maven { url 'https://esri.bintray.com/arcgis' }
+  				 mavenCentral() 
+  				 jcenter()
+  			   }
+  dependencies { 
+    classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+  	classpath 'com.esri.arcgisruntime:gradle-arcgis-java-plugin:1.0.0'
+  	}
+  	
+}
+
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'com.esri.arcgisruntime.java'
+
+mainClassName = "com.mycompany.app.PokemonWorldMap"
+applicationDefaultJvmArgs = ["-Dgreeting.language=en"]
+
+dependencies {
+  compile fileTree(include: ['PokeGOAPI-library-all-*.jar'], dir: 'libs/') 
+  compile 'com.squareup.okhttp3:okhttp:3.9.1'
+  compile 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+  compile 'com.google.protobuf:protobuf-gradle-plugin:0.7.7'
+  compile 'com.google.protobuf:protobuf-gradle-plugin:0.8.3'
+}
+
+task createDocs {
+    def docs = file("$buildDir/docs")
+    outputs.dir docs
+    doLast {
+        docs.mkdirs()
+        new File(docs, "readme.txt").write("Read me!")
+    }
+}
+
+distributions {
+    main {
+        contents {
+            from(createDocs) {
+                into "docs"
+            }
+        }
+    }
+}
+
+arcgis.version = '100.1.0'
+
+version = '1.0'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+        	'Implementation-Version': version,
+        	'Main-Class': 'com.mkyong.DateUtils'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+//Get dependencies from Maven central repository
+repositories {
+    mavenCentral()
+}
+
+//Project dependencies
+dependencies {
+	compile 'ch.qos.logback:logback-classic:1.1.2'
+}
+
+// download javadoc
+eclipse.classpath.downloadJavadoc = true

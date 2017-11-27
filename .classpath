@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/kylesponheim/workspace/java/MapTest/libs/PokeGOAPI-library-0.4.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="/Users/kylesponheim/workspace/java/MapTest/libs/PokeGOAPI-library-0.4.1-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/kylesponheim/workspace/java/MapTest/libs/PokeGOAPI-library-all-0.4.1.jar"/>
+	<classpathentry kind="lib" path="/Users/kylesponheim/workspace/java/MapTest/libs/PokeGOAPI-library-0.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
